@@ -18,7 +18,7 @@ To achive this the following tools, services are used.
 
 # Architecture
 
-# Step to create 
+# Steps to create the pipeline
 ### Step 1: create a connection to GitHub project
 
 To link the GitHub repository with the AWS CodePipeline, a connection with required persmission needs to be established beforehand.
@@ -33,7 +33,7 @@ One completed successfully it looks as below
 
  ![image](https://user-images.githubusercontent.com/15073157/193419783-be140835-2a3b-45cf-acc5-11935cb9f59b.png)
 
-### Step 2: provisioning of needed resources
+### Step 2: provision the needed resources
 To provision a CodePipe line some IAM roles and a S3 bucket are needed. The needed resources are in ```infrastructure/cicd-pipeline-iam-roles-policies.yaml```.
 
 The exact resources are:
@@ -57,7 +57,7 @@ The resources created are
 
 By the end of this step needed resources are provisioned successfully
 
-### Step 3: provisioning of pipleline 
+### Step 3: provision the pipleline 
 
 In this step we provision the actual pipeline.
 
