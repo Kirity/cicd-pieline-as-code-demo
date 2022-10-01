@@ -30,8 +30,6 @@ Resources:
             Value: "builds/lambdas"
           - Name: TEMPLATE_FILE_NAME # this is the name for the cloudformation file that will define lambda (explained in article)
             Value: template_file.yaml
-          - Name: Test
-            Value: Test
       ServiceRole: !Sub 'arn:aws:iam::${AWS::AccountId}:role/CODEBUILD_CICD_ROLE'
       Source: # specifies the location of code for this project
         Type: CODEPIPELINE
