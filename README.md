@@ -5,7 +5,7 @@ In this project an AWS CodePipeline and needed resources are  created with Cloud
 
 # Prerequisite
 The prerequisite is an existing codebase for the Lambda function.
-In this example an existing project print-s3-buckets-lambda(https://github.com/Kirity/print-s3-buckets-lambda) is used
+In this example an existing project [print-s3-buckets-lambda](https://github.com/Kirity/print-s3-buckets-lambda) is used
 
 # Step to create 
 ## Step 1: provisioning of needed resources
