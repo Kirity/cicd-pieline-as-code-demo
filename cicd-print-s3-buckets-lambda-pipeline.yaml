@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'This template deploys a basic code pipeline for a single region'
+Description: 'This template deploys a code pipeline'
 Resources:
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
   # Code build is a container that you can use to run commands
@@ -63,7 +63,7 @@ Resources:
                 Provider: CodeStarSourceConnection
                 Version: '1'
               Configuration:
-                ConnectionArn: !Sub 'arn:aws:codestar-connections:us-east-1:${AWS::AccountId}:connection/a6ac1aa0-5c4d-4f7b-af5b-7a200a1d51ab'
+                ConnectionArn: !Sub 'arn:aws:codestar-connections:eu-west-1:${AWS::AccountId}:connection/b57863bd-359f-475d-b0d9-2f928e3aa598'
                 FullRepositoryId: "Kirity/print-s3-buckets-lambda"
                 BranchName: master
                 OutputArtifactFormat: "CODE_ZIP"
@@ -100,7 +100,7 @@ Resources:
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM
                 RoleArn: !Sub 'arn:aws:iam::${AWS::AccountId}:role/CLOUDFORMATION_CICD_ROLE'
-                TemplatePath: !Sub "BuildArtifact::${TemplateFileName}"
+                TemplatePath: !Sub "BuildArtifact::template_file.yaml"
                 TemplateConfiguration: BuildArtifact::config.json
               InputArtifacts:
                 - Name: BuildArtifact
