@@ -1,52 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'This template deploys a basic code pipeline for a single region'
-Parameters:
-  PipeLineName:
-    Type: String
-    Description: Codepipeline name
-    Default: cicd-pipeline-demo
-  CodebuildRoleArn:
-    Type: String
-    Description: Arn for codebuild role
-    Default: arn:aws:iam::639543226457:role/codebuild_cicd_demo_role
-  CloudformationRoleArn:
-    Type: String
-    Description: Arn for cloudformation role
-    Default: arn:aws:iam::639543226457:role/cfn_lambda_cicd_demo_role
-  CodepipelineRoleArn:
-    Type: String
-    Description: Arn for codepipeline role
-    Default: arn:aws:iam::639543226457:role/codepieline_cicd_demo_role
-  S3ArtifactStore:
-    Type: String
-    Description: Name of S3 bucket
-    Default: lambda-cicd-demo-bucket-example
-  S3BuildsPrefix:
-    Type: String
-    Default: builds/lambdas
-    Description: Location of lambda builds in S3 Bucket
-  TemplateFileName:
-    Type: String
-    Default: template_file.yaml
-    Description: Name of the cloudformation template created by codebuild
-  GithubConnectionArn:
-    Type: String
-    Description: This arn is created in codepipeline connections through the console
-    Default: arn:aws:codestar-connections:us-east-1:639543226457:connection/a6ac1aa0-5c4d-4f7b-af5b-7a200a1d51ab
-  GithubRepositoryName:
-    Type: String
-    Description: Path of the Github repository
-    Default: Kirity/lambda-cicd-demo
-  GithubBranch:
-    Type: String
-    Default: main
-    Description: Name of the branch
-
-
+Resources:
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
   # Code build is a container that you can use to run commands
   # specified in a buildspec.yaml file in your codebase.
-  # It can be used for building and testing code.
   CodeBuild:
     Type: AWS::CodeBuild::Project
     Properties:
@@ -68,17 +25,18 @@ Parameters:
           - Name: AWS_ACCOUNT_ID
             Value: !Ref "AWS::AccountId"
           - Name: S3_BUCKET # this is the s3 bucket where lambda code will be uploaded to
-            Value: !Ref S3ArtifactStore # Ref commands refer to parameters
+            Value: cicd-pipeline-bucket-demo # Ref commands refer to parameters
           - Name: S3_BUILDS_PREFIX # this is the s3 location where the code will be uploaded to
-            Value: !Ref S3BuildsPrefix
+            Value: "builds/lambdas"
           - Name: TEMPLATE_FILE_NAME # this is the name for the cloudformation file that will define lambda (explained in article)
-            Value: !Ref TemplateFileName
+            Value: template_file.yaml
           - Name: Test
             Value: Test
-      ServiceRole: !Ref CodebuildRoleArn # this role was created earlier. The codebuild project will take on this role
+      ServiceRole: !Sub 'arn:aws:iam::${AWS::AccountId}:role/CODEBUILD_CICD_ROLE'
       Source: # specifies the location of code for this project
-        Type: CODEPIPELINE # our source code comes from the code pipeline
-        # a file named buildspec.yaml should be in your codebase in the main directory. It describes the commands run in the codebuild container
+        Type: CODEPIPELINE
+        # a file named buildspec.yaml should be in your codebase in the main directory.
+        # It describes the commands run in the codebuild container
         BuildSpec: buildspec.yaml
 
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html
@@ -86,11 +44,11 @@ Parameters:
   Codepipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      Name: !Ref PipeLineName
+      Name: "cicd-pipeline-demo"
       ArtifactStore: # specifies the s3 bucket where artifacts (files) from this pipeline should be stored
         Type: S3
-        Location: !Ref S3ArtifactStore
-      RoleArn: !Ref CodepipelineRoleArn
+        Location: cicd-pipeline-bucket-demo
+      RoleArn: !Sub 'arn:aws:iam::${AWS::AccountId}:role/CODEPIPELINE_CICD_ROLE'
       # the following types of stages can be defined: (source, build, test, deploy, invoke, approval)
       # each stage can have multiple actions
       Stages:
@@ -105,9 +63,9 @@ Parameters:
                 Provider: CodeStarSourceConnection
                 Version: '1'
               Configuration:
-                ConnectionArn: !Ref GithubConnectionArn
-                FullRepositoryId: !Ref GithubRepositoryName
-                BranchName: !Ref GithubBranch
+                ConnectionArn: !Sub 'arn:aws:codestar-connections:us-east-1:${AWS::AccountId}:connection/a6ac1aa0-5c4d-4f7b-af5b-7a200a1d51ab'
+                FullRepositoryId: "Kirity/print-s3-buckets-lambda"
+                BranchName: master
                 OutputArtifactFormat: "CODE_ZIP"
               # output artifact are your source code files
               OutputArtifacts:
@@ -141,7 +99,7 @@ Parameters:
                 StackName: !Sub "lambda-stack"
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_IAM,CAPABILITY_NAMED_IAM
-                RoleArn: !Ref CloudformationRoleArn
+                RoleArn: !Sub 'arn:aws:iam::${AWS::AccountId}:role/CLOUDFORMATION_CICD_ROLE'
                 TemplatePath: !Sub "BuildArtifact::${TemplateFileName}"
                 TemplateConfiguration: BuildArtifact::config.json
               InputArtifacts:

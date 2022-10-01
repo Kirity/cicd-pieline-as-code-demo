@@ -1,0 +1,3 @@
+-- Create the stack
+
+aws cloudformation create-stack --template-body file://cicd-pipeline-iam-roles-policies.yaml --stack-name cicd-pieline-iam-roles-policies --capabilities CAPABILITY_NAMED_IAM
