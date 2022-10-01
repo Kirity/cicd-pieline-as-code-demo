@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Creating IAM roles and policies for the CodePipeline'
+Resources:
+  CodeBuildCICDRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: CODEBUILD_CICD_ROLE
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/AdministratorAccess'
+  CloudFormationCICDRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: CLOUDFORMATION_CICD_ROLE
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - cloudformation.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/AdministratorAccess'
+  CodePipelineCICDRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: CODEPIPELINE_CICD_ROLE
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/AdministratorAccess'
+  CICDS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: cicd-pipeline-bucket-demo
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
