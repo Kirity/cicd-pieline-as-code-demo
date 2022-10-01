@@ -1,3 +1,9 @@
+# Summary
+
+[Introduction](https://github.com/Kirity/cicd-pieline-as-code-demo/blob/master/README.md#introduction)
+
+
+
 # Introduction
 In this project CICD pipeline is created with CloudFormation templates for a AWS Lambda function.
 To achive this the following tools, services are used.
