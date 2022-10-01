@@ -2,7 +2,7 @@
 
 * [Introduction](https://github.com/Kirity/cicd-pieline-as-code-demo/blob/master/README.md#introduction)
 
-* [Prerequisite](https://github.com/Kirity/cicd-pieline-as-code-demo#prerequisite)
+* [Prerequisites](https://github.com/Kirity/cicd-pieline-as-code-demo#prerequisites)
 
 * [Architecture](https://github.com/Kirity/cicd-pieline-as-code-demo#architecture)
 
@@ -26,7 +26,7 @@ To achive this the following tools, services are used.
 
 [AWS CloudFormation](https://aws.amazon.com/cloudformation/): AWS native infrastructure as code(Iac) service.
 
-# Prerequisite
+# Prerequisites
 1. An existing AWS account.
 2. Previous understaning of services related to Developer Tools
 3. Existing codebase for the Lambda function. In this example an existing project [print-s3-buckets-lambda](https://github.com/Kirity/print-s3-buckets-lambda) is used.
