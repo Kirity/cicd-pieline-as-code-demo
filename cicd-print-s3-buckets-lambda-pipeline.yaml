@@ -63,7 +63,7 @@ Resources:
                 Provider: CodeStarSourceConnection
                 Version: '1'
               Configuration:
-                ConnectionArn: !Sub 'arn:aws:codestar-connections:eu-west-1:${AWS::AccountId}:connection/b57863bd-359f-475d-b0d9-2f928e3aa598'
+                ConnectionArn: !Sub 'arn:aws:codestar-connections:eu-west-1:${AWS::AccountId}:connection/connection/66168fcd-84c1-4af8-bc09-9a1aa9339ec8'
                 FullRepositoryId: "Kirity/print-s3-buckets-lambda"
                 BranchName: master
                 OutputArtifactFormat: "CODE_ZIP"
