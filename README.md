@@ -1,8 +1,16 @@
 # Summary
 
-[Introduction](https://github.com/Kirity/cicd-pieline-as-code-demo/blob/master/README.md#introduction)
+* [Introduction](https://github.com/Kirity/cicd-pieline-as-code-demo/blob/master/README.md#introduction)
 
+* [Prerequisite](https://github.com/Kirity/cicd-pieline-as-code-demo#prerequisite)
 
+* [Architecture](https://github.com/Kirity/cicd-pieline-as-code-demo#architecture)
+
+* [Steps to create the pipeline](https://github.com/Kirity/cicd-pieline-as-code-demo#steps-to-create-the-pipeline)
+  - [Step 1: create a connection to GitHub project](https://github.com/Kirity/cicd-pieline-as-code-demo#step-1-create-a-connection-to-github-project)
+  - [Step 2: provision the needed resources](https://github.com/Kirity/cicd-pieline-as-code-demo#step-2-provision-the-needed-resources)
+  - [Step 3: provision the pipleline](https://github.com/Kirity/cicd-pieline-as-code-demo#step-3-provision-the-pipleline)
+  
 
 # Introduction
 In this project CICD pipeline is created with CloudFormation templates for a AWS Lambda function.
