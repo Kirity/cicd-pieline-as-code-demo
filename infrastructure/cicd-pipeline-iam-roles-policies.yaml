@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'Creating IAM roles and policies for the CodePipeline'
+Description: 'Creating IAM roles and policies for the CodePipeline test'
 Resources:
   CodeBuildCICDRole:
     Type: 'AWS::IAM::Role'
