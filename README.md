@@ -28,7 +28,8 @@ To achive this the following tools, services are used.
 
 # Prerequisite
 1. An existing AWS account.
-2. Existing codebase for the Lambda function. In this example an existing project [print-s3-buckets-lambda](https://github.com/Kirity/print-s3-buckets-lambda) is used.
+2. Previous understaning of services related to Developer Tools
+3. Existing codebase for the Lambda function. In this example an existing project [print-s3-buckets-lambda](https://github.com/Kirity/print-s3-buckets-lambda) is used.
 
 # Architecture
 
