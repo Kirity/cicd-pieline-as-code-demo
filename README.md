@@ -167,7 +167,10 @@ Lambda code has been updated
 ![image](https://user-images.githubusercontent.com/15073157/193452314-7217e5fc-8683-4db7-bf42-e90165742ddc.png)
 
 
+# Improvements
 
+This project can be further improved by adopting the best practices
+- 
 
 
 
