@@ -11,9 +11,9 @@
   - [Step 2: provision the needed resources](https://github.com/Kirity/cicd-pieline-as-code-demo#step-2-provision-the-needed-resources)
   - [Step 3: provision the pipleline](https://github.com/Kirity/cicd-pieline-as-code-demo#step-3-provision-the-pipleline)
 
-* Testing  
+* [Testing](https://github.com/Kirity/cicd-pieline-as-code-demo/blob/master/README.md#testing)  
 
-* Improvements
+* [Improvements](https://github.com/Kirity/cicd-pieline-as-code-demo/blob/master/README.md#improvements)  
 
 # Introduction
 In this project CICD pipeline is created with CloudFormation templates for a AWS Lambda function.
