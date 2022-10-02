@@ -170,7 +170,9 @@ Lambda code has been updated
 # Improvements
 
 This project can be further improved by adopting the best practices
-- 
+- All the IAM roles were created with privileged access to simplify things. Provide only the needed privileges for all the roles.
+- Consider encrypting the S3 bucket with KMS keys.
+- Enable monitoring and create alerts 
 
 
 
