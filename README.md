@@ -36,6 +36,9 @@ To achive this the following tools, services are used.
 
 # Architecture
 
+![image](https://user-images.githubusercontent.com/15073157/193453262-076b0780-af3d-426e-8411-b3384f0b7546.png)
+
+
 # Steps to create the pipeline
 ### Step 1: create a connection to GitHub project
 
