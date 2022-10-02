@@ -127,4 +127,58 @@ A detailed look into the pipeline
 
 # Testing
 
+### Before
+
+First let us see the current version of the Lambda.
+
+GitHub latest commit "version increment to 2"
+
+![image](https://user-images.githubusercontent.com/15073157/193451825-40a9fd30-b2ff-4891-8aac-339ae5ab6131.png)
+
+The same commit has triggered the pipeline in AWS
+
+![image](https://user-images.githubusercontent.com/15073157/193451877-ea3204a3-1f15-4425-b9bc-39160a5f6150.png)
+
+Deployment succeeded
+
+![image](https://user-images.githubusercontent.com/15073157/193451925-d8cb1079-d8a7-4763-8e49-eb20e4f16388.png)
+
+Lambda code with version 2
+
+![image](https://user-images.githubusercontent.com/15073157/193451947-93a18efb-ed72-428b-8f0e-bdeb8257c243.png)
+
+### After
+
+Now lets increase the version to 3 with a commit to _master_ branch.
+
+![image](https://user-images.githubusercontent.com/15073157/193452066-14903c97-9774-48ce-ae75-1a28b12778eb.png)
+
+Latest commit has triggered the pipeline
+
+![image](https://user-images.githubusercontent.com/15073157/193452101-6c631731-4c6f-47f4-ab6f-70ac8ca108eb.png)
+
+After few minutes, deployed successfully with the "version 3" commit
+
+![image](https://user-images.githubusercontent.com/15073157/193452290-077f2f5d-6da0-4945-8112-dafdbe81feaf.png)
+
+
+Lambda code has been updated 
+
+![image](https://user-images.githubusercontent.com/15073157/193452314-7217e5fc-8683-4db7-bf42-e90165742ddc.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
