@@ -16,8 +16,8 @@
 * [Improvements](https://github.com/Kirity/cicd-pieline-as-code-demo/blob/master/README.md#improvements)  
 
 # Introduction
-In this project CICD pipeline is created with CloudFormation templates for a AWS Lambda function.
-To achive this the following tools, services are used.
+In this project CICD pipeline is created with CloudFormation templates for an AWS Lambda function.
+To achieve this the following tools and services are employed.
 
 [GitHub](https://github.com/): as a version control system and code repository.
 
@@ -31,7 +31,7 @@ To achive this the following tools, services are used.
 
 # Prerequisites
 1. An existing AWS account.
-2. Previous understaning of services related to Developer Tools.
+2. Previous understanding of services related to Developer Tools.
 3. Existing codebase for the Lambda function. In this example an existing project [print-s3-buckets-lambda](https://github.com/Kirity/print-s3-buckets-lambda) is used.
 
 # Architecture
@@ -55,7 +55,8 @@ One completed successfully it looks as below.
  ![image](https://user-images.githubusercontent.com/15073157/193419783-be140835-2a3b-45cf-acc5-11935cb9f59b.png)
 
 ### Step 2: provision the needed resources
-To provision a CodePipe line some IAM roles and a S3 bucket are needed. The needed resources are in ```infrastructure/cicd-pipeline-iam-roles-policies.yaml```.
+To provision a CodePipe line some IAM roles and a S3 bucket are needed. 
+The needed resources are in ```infrastructure/cicd-pipeline-iam-roles-policies.yaml```.
 
 The exact resources are:
 
@@ -69,7 +70,7 @@ The exact resources are:
 
 Provisioning can be done in two ways: CloudFormation UI or AWS CLI.
 
-CLI commond to run is 
+The CLI command to run is 
 ```aws cloudformation create-stack --template-body file://cicd-pipeline-iam-roles-policies.yaml --stack-name cicd-pieline-iam-roles-policies --capabilities CAPABILITY_NAMED_IAM```
 
 The resources created are as below
@@ -86,15 +87,16 @@ The code for this in the file ```cicd-print-s3-buckets-lambda-pipeline.yaml```. 
 
 ```AWS::CodeBuild::Project```: we need environment to build and run the commands needed to deploy the Lambda. 
 - A Linux container evn is provisioned with AWS provided standard linux image.
-- Env variables are defined to inject the values at run time rathe than hard coding the things.
+- Env variables are defined to inject the values at run time rather than hard coding the things.
 - Service role used is ```CODEBUILD_CICD_ROLE```, which was created in Step 2.
 - The source for this project will be from CodePipeline.
-- BuildSpec is the file in which build commands will be present and the CodeBuild will execute them in the provisioned env.
+- BuildSpec is the file in with build commands and the CodeBuild will execute them in the provisioned env.
 
-```AWS::CodePipeline::Pipeline```: CodePipe line is a umberalla service that can define the source code connections, build stage, and deploy stage.
+```AWS::CodePipeline::Pipeline```: CodePipe line is a umbrella service can define the source code connections, 
+build stage, and deploy stage.
 - Actions-Source: 
   - This is the first stage of the pipeline, where the path to the source code is defined. The connection created in Step 1 is used here.
-  - Full repo path and the branch-name(on which pipeline should be triggered) are provided.
+  - Full repo path, and the branch-name(on which pipeline should be triggered) are provided.
 
 ![image](https://user-images.githubusercontent.com/15073157/193424548-57f83432-5ecb-4d50-aadf-0e1b7c4bd661.png)
 
@@ -111,7 +113,8 @@ The code for this in the file ```cicd-print-s3-buckets-lambda-pipeline.yaml```. 
 
 ![image](https://user-images.githubusercontent.com/15073157/193424576-f2cb2e36-5690-468e-86e8-d5f765143e81.png)
 
-There are two ways to execute the template file one with CloudForamtion UI and with CLI. Command to run in CLI is ```aws cloudformation create-stack --template-body file://cicd-print-s3-buckets-lambda-pipeline.yaml --stack-name cicd-print-s3-buckets-lambda-pipeline```
+There are two ways to execute the template file one with CloudFormation UI and with CLI. 
+Command to run in CLI is ```aws cloudformation create-stack --template-body file://cicd-print-s3-buckets-lambda-pipeline.yaml --stack-name cicd-print-s3-buckets-lambda-pipeline```.
 
 The view from CloudFormation service
 
